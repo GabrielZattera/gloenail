@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import { Text, View, Image, TextInput, Button, TouchableOpacity, Alert } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../../App"; // AJUSTE O CAMINHO CONFORME SUA ESTRUTURA
 import Logo from "../../assets/Logo.png";
 import styles from "./styles";
 
+// Tipagem da navegação
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, "Login">;
+
 export default function Login() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +34,9 @@ export default function Login() {
     <View style={styles.container}>
       <View style={styles.boxTop}>
         <Image source={Logo} style={{ width: 150, height: 100 }} />
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>Bem vindo de volta!</Text>
+        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+          Bem vindo de volta!
+        </Text>
       </View>
       <View style={styles.boxMid}>
         <Text>Endereço de e-mail</Text>
@@ -43,7 +58,9 @@ export default function Login() {
       <View style={styles.boxBottom}>
         <Button title="Entrar" color="#eb85ca" onPress={handleLogin} />
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.createAccountText}>Não tem uma conta? Crie uma agora</Text>
+          <Text style={styles.createAccountText}>
+            Não tem uma conta? Crie uma agora
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

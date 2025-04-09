@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, TouchableOpacity, Alert, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../../App"; // <-- Caminho certo para o App.tsx
 import Logo from "../../assets/Logo.png";
 import styles from "./styles";
 
+// Tipagem da navegação
+type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, "Register">;
+
 export default function Register() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<RegisterScreenNavigationProp>();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
